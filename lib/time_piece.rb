@@ -9,16 +9,5 @@ class TimePiece
     @month = month
   end
 
-  def date
-    @date
-  end
-
-  def month
-    @month
-  end
-
-  def name
-    @name
-  end
 
 end
