@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require './lib/time_piece'
 
 class Birthday < Sinatra::Base
 
@@ -8,10 +9,7 @@ class Birthday < Sinatra::Base
 
   post '/take_name' do
     #can i put all three params in one
-    name = params[:name]
-    date = params[:date] 
-    month = params[:month]
-    @user = TimePiece.new(name, date, month)
+    @user = TimePiece.new(params[:name], params[:date], params[:month])
     erb :form  #User.new(params[:name])
   end
 
