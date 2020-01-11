@@ -5,7 +5,7 @@ require 'capybara'
 require './app'
 require 'capybara/rspec'
 require 'rspec'
-require 'sinatra'
+
 # require_relative './features/web_helpers'
 
 Capybara.app = Birthday
