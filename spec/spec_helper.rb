@@ -1,13 +1,14 @@
 ENV['RACK_ENV'] = 'test'
 
-require File.join(File.dirname(__FILE__), '..', 'app.rb')
-
+# require File.join(File.dirname(__FILE__), '..', 'app.rb')
 require 'capybara'
+require './app'
 require 'capybara/rspec'
 require 'rspec'
-require_relative './features/web_helpers'
+require 'sinatra'
+# require_relative './features/web_helpers'
 
-Capybara.app = Battle
+Capybara.app = Birthday
 
 
 
