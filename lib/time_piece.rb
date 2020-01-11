@@ -6,8 +6,4 @@ class TimePiece
     @date = Time.new.yday
   end
 
-  def today_date
-    @date
-  end
-
 end
