@@ -3,21 +3,48 @@ require './lib/time_piece'
 
 class Birthday < Sinatra::Base
 
+  enable :sessions
+
   get '/' do
     erb :home
   end
 
   post '/take_name' do
     #can i put all three params in one
-    @user = TimePiece.new(params[:name], params[:date], params[:month])
-    erb :form  #User.new(params[:name])
+    session[:name] = params[:name]
+    session[:day] = params[:day]
+    session[:month] = params[:month]
+    redirect '/validation'  #User.new(params[:name])
+  end
+
+  get '/validation' do
+    @name = session[:name]
+    @user = TimePiece.new(session[:month],session[:day])
+    @user.birthday? ? (redirect('/birthday_celebration')) : (redirect('/birthday_count_down')) 
+  end
+
+
+  get '/birthday_count_down' do
+    @name = session[:name]
+    @user = TimePiece.new(session[:month],session[:day])
+    erb :form
+  end
+
+  get '/birthday_celebration' do
+    @date = session[:day]
+    @name = session[:name]
+    @month = session[:month]
+    erb :celebrate
   end
 
 
   run! if app_file == $0
 end
 
-# if tday = bday
+
+
+
+# if tday = day
 
 
   # get '/days_till' do
