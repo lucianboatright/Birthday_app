@@ -12,8 +12,9 @@ class Birthday < Sinatra::Base
   post '/take_name' do
     #can i put all three params in one
     session[:name] = params[:name]
-    session[:day] = params[:day]
     session[:month] = params[:month]
+    session[:day] = params[:day]
+
     redirect '/validation'  #User.new(params[:name])
   end
 
@@ -26,14 +27,14 @@ class Birthday < Sinatra::Base
 
   get '/birthday_count_down' do
     @name = session[:name]
+    @count = TimePiece.new(session[:month],session[:day]).count_down## add user with out countdown
     @user = TimePiece.new(session[:month],session[:day])
     erb :form
   end
 
   get '/birthday_celebration' do
-    @date = session[:day]
     @name = session[:name]
-    @month = session[:month]
+    @user_date = TimePiece.new(session[:month],session[:day])
     erb :celebrate
   end
 

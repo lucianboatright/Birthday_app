@@ -2,7 +2,7 @@ class TimePiece
 
   attr_reader :today_date, :day, :month
 
-  def initialize(month,day)
+  def initialize(month, day)
     # @date = Time.new.yday
     @day = day
     @month = month
@@ -14,16 +14,19 @@ class TimePiece
   end
 
   def user_date
-    Time.new(0,@month,@day).yday
+    p "MONTHHHHHH"
+    p @month
+    p "DAYYYYYYY"
+    p @day
+    Time.new(0, @month, @day).yday
   end
 
+
   def count_down
-    # if tday == bday
-    #   return message
-    # elsif bday > tday
-    #   365 - (tday - bday)
-    # elsif tday == bday
-    #   tday - bday
-    # end
+    if user_date < today_date
+     (@today_date - user_date)
+    elsif user_date > today_date
+      365 - (user_date - @today_date)
+    end
   end
 end
